@@ -8,4 +8,6 @@ add_executable(Library_Management_System
         Transaction.h
         Book.h
         Librarian.h
-        User.h)
+        User.h
+        Library.h
+)
