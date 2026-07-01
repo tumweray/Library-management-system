@@ -7,15 +7,26 @@
 
 using namespace std;
 
-void Librarian::issueBook(Book& book, User& user, Library& library) { //&- operator: ensures we are getting the book and not making new copies then deleting them at the end of the function
-    if (book.IsAvailable) { // Fixed: capitalization to match Book class
+void Librarian::issueBook(Book& book, User& user, Library& library) {
+    if (book.IsAvailable) {
         book.checkoutBook();
         user.borrowedBookId = book.id;
-        cout << "Success: Book '" << book.title <<"Book id: "<< book.id <<"' issued to " << user.name << "." << endl;
 
+        // 1. Generate structural data for transaction
+        int txId = library.getNextTransactionId();
+        std::string dueDate = "2026-07-15"; // Static placeholder date for now
 
+        // 2. Instantiate the transaction object
+        Transaction newTx(txId, book.id, user.UserId, dueDate);
+
+        // 3. Push transaction into the library's vector database
+        library.logTransaction(newTx);
+
+        std::cout << "Success: Book '" << book.title << "' (ID: " << book.id
+                  << ") issued to " << user.name << "." << std::endl;
+        newTx.displayReceipt(); // Immediate print validation
     } else {
-        cout << "Book is not available!" << endl;
+        std::cout << "Error: Book is not available!" << std::endl;
     }
 }
 
