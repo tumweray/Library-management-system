@@ -3,10 +3,11 @@
 #include "User.h"
 #include "Book.h"
 #include "Transaction.h"
+#include "Library.h"
 
 using namespace std;
 
-void Librarian::issueBook(Book& book, User& user) { //&- operator: ensures we are getting the book and not making new copies then deleting them at the end of the function
+void Librarian::issueBook(Book& book, User& user, Library& library) { //&- operator: ensures we are getting the book and not making new copies then deleting them at the end of the function
     if (book.IsAvailable) { // Fixed: capitalization to match Book class
         book.checkoutBook();
         user.borrowedBookId = book.id;
@@ -17,6 +18,7 @@ void Librarian::issueBook(Book& book, User& user) { //&- operator: ensures we ar
         cout << "Book is not available!" << endl;
     }
 }
+
 
 void Librarian::ReturnBook(Book& book, User& user) {
     if (user.borrowedBookId == book.id) {

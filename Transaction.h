@@ -22,6 +22,10 @@ public:
         this->UserId = UserId;
         this->DueDate = DueDate;
     };
+    int getTransactionId() const { return TransactionId; } //const is to ensure getTransactionId only reads
+    int getBookId() const { return BookId; }
+    int getUserId() const { return UserId; }
+    string getDueDate() const { return DueDate; }
 
 };
 #endif //TRANSACTION_H

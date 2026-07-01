@@ -1,5 +1,7 @@
 #include "Book.h"
 #include "User.h"
+#include "Library.h"
+
 //
 // Created by mukis on 29/06/2026.
 //
@@ -11,8 +13,8 @@ private:
     int LibrarianId;
     string LibrarianName;
 public:
-    void issueBook( Book& book , User& user );
-    void ReturnBook( Book& book , User& user );
+    void issueBook(Book& book, User& user, Library& library);
+    void ReturnBook(Book& book, User& user);
     Librarian(int Librarian, string LibrarianName ) {
         this->LibrarianId = Librarian;
         this->LibrarianName = LibrarianName;
